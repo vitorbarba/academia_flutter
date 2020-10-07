@@ -16,8 +16,8 @@ void main(List<String> args) {
 
   var listaSobrenomeNomePacientes = <String>[''];
 
-  final pacienteComMaisDeXAnos = 20;
-  var qtdPacientesComMaisDeXAnos = 0;
+  final pacienteComMaisDeXAnosDeIdade = 20;
+  var qtdPacientesComMaisDeXAnosDeIdade = 0;
   String nomeCompleto;
   String nome;
   String sobrenome;
@@ -25,24 +25,23 @@ void main(List<String> args) {
   for (var paciente in pacientes) {
     if (paciente.split('|')[0].isEmpty) continue;
 
-    if (int.tryParse(paciente.split('|')[1]) > pacienteComMaisDeXAnos) {
-      qtdPacientesComMaisDeXAnos++;
+    if (int.tryParse(paciente.split('|')[1]) > pacienteComMaisDeXAnosDeIdade) {
+      qtdPacientesComMaisDeXAnosDeIdade++;
     }
 
     nomeCompleto = paciente.split('|')[0];
     sobrenome = nomeCompleto.split(' ')[
-        1]; //Queria pegar o ultima string depois do espeço para garantir que é o sobrenome. Mas existem nomes completos com mais de um sobrenome, como faria para pegar o ultimo sobrenome, garantir que sempre será o último?
+        1]; //Queria pegar o ultima string depois do espaço para garantir que é o sobrenome. Mas existem nomes completos com mais de um sobrenome, como faria para pegar o ultimo sobrenome, garantir que sempre será o último?
     nome = nomeCompleto.split(' ')[0];
     listaSobrenomeNomePacientes.add(sobrenome + '|' + nome);
-
-    // listaIdadePacientes.add(paciente.split('|')[1].);
   }
 
   print(
-      'Temos $qtdPacientesComMaisDeXAnos pacientes com mais de $pacienteComMaisDeXAnos anos de idade.');
+      'Temos $qtdPacientesComMaisDeXAnosDeIdade pacientes com mais de $pacienteComMaisDeXAnosDeIdade anos de idade.');
 
   //limpa a variável sobrenome para agrupar print por sobrenome
   sobrenome = '';
+
   listaSobrenomeNomePacientes.sort();
 
   for (var sobrenomeNomePaciente in listaSobrenomeNomePacientes) {
